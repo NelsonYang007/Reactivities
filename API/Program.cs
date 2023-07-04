@@ -14,6 +14,12 @@ builder.Services.AddDbContext<DataContext>(opt=>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("CorsPolicy",policy => {
+        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +32,7 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 //app.UseAuthorization();
-
+app.UseCors("CorsPolicy");
 app.MapControllers();
 
 //After declare the following services, type "dotnet watch" in command line to create actual SQLite database in the API project.

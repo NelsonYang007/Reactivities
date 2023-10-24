@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #EAEAEA !important;
+}
+
+.ui.inverted.top.fixed.menu{
+  background-image: linear-gradient(135deg, rgb(24,32,115) 0%, rgb(33,138,174) 69%, rgb(32,167,172) 89%);
 }
 
 code {

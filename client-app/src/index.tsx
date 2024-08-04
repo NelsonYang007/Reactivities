@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'semantic-ui-css/semantic.min.css';
+import 'react-calendar/dist/Calendar.css';
 import './app/layout/style.css';
-import App from './app/layout/App';
+// import App from './app/layout/App';
+import 'react-toastify/dist/ReactToastify.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import reportWebVitals from './reportWebVitals';
+import { StoreContext, store } from './app/stores/store';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './app/router/Routes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
- // <React.StrictMode>
-    <App />
- // </React.StrictMode>
+  <React.StrictMode>
+    <StoreContext.Provider value={store}>
+    {/* <App /> */}
+    <RouterProvider router={router}></RouterProvider>
+    </StoreContext.Provider>
+ </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

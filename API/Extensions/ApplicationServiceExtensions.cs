@@ -1,5 +1,7 @@
 using Application.Activities;
 using Application.Core;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -25,7 +27,9 @@ namespace API.Extensions
 
             services.AddMediatR(typeof(List.Handler)); //Adding Medaiator that handle command and query process
             services.AddAutoMapper(typeof(MappingProfiles).Assembly); // adding AutoMapper service in order to match the JSON and Domain model in ASP.NET core.
-        
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
+                   
             return services;
         }
     }

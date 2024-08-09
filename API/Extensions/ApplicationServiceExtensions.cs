@@ -1,7 +1,9 @@
 using Application.Activities;
 using Application.Core;
+using Application.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -29,6 +31,8 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(MappingProfiles).Assembly); // adding AutoMapper service in order to match the JSON and Domain model in ASP.NET core.
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAccessor, UserAccessor>(); // add the user accessor to the dependency injection
                    
             return services;
         }

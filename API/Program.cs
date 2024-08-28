@@ -1,5 +1,6 @@
 using API.Extensions;
 using API.Middleware;
+using API.SignalR;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,7 @@ app.UseAuthorization();
 
 app.UseCors("CorsPolicy");
 app.MapControllers();
+app.MapHub<ChatHub>("/chat");
 
 //After declare the following services, type "dotnet watch" in command line to create actual SQLite database in the API project.
 using var scope = app.Services.CreateScope(); //with keyword using, it will destory or collect by garbage collector once it was used.

@@ -15,5 +15,6 @@ namespace Domain
 
         public ICollection<ActivityAttendee> Attendees { get; set; } = new List<ActivityAttendee>(); // new keyword means new empty list instaed of null
 
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

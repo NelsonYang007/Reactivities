@@ -32,7 +32,8 @@ namespace Application.Comments
             private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
             {
-                context = _context;
+                //context = _context;
+                _context = context;
                 _mapper = mapper;
                 _userAccessor = userAccessor;
             }

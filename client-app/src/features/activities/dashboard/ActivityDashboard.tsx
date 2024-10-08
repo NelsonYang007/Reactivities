@@ -7,11 +7,9 @@ import ActivityList from "./ActivityList";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import LoadingComponent from "../../../app/layout/LoadingComponent";
 import ActivityFilters from "./ActivityFilters";
-import { PagingParams } from "../../../app/models/pagination";
+//import { PagingParams } from "../../../app/models/pagination";
 import ActivityListItemPlaceholder from "./ActivityListItemPlaceholder";
-import InfiniteScroll from "react-infinite-scroller";
 
 // interface Props{
 //     activities : Activity[];
@@ -31,15 +29,15 @@ import InfiniteScroll from "react-infinite-scroller";
 export default observer (function ActivityDashboard(){ 
 
     const {activityStore} = useStore();
-    const {loadActivities, activityRegistry, setPagingParams, pagination} = activityStore;
+    const {loadActivities, activityRegistry} = activityStore;
     //const {selectedActivity, editMode} = activityStore;
-    const [loadingNext, setLoadingNext] = useState(false);
+    const [loadingNext] = useState(false);
 
-    function handleGetNext(){
-        setLoadingNext(true);
-        setPagingParams(new PagingParams(pagination!.currentPage + 1));
-        loadActivities().then(() => setLoadingNext(false));
-    }
+    // function handleGetNext(){
+    //     setLoadingNext(true);
+    //     setPagingParams(new PagingParams(pagination!.currentPage + 1));
+    //     loadActivities().then(() => setLoadingNext(false));
+    // }
 
     useEffect(()=>{
        if(activityRegistry.size <= 1) loadActivities(); // only load activities if there are no activities in the registry
@@ -57,13 +55,14 @@ export default observer (function ActivityDashboard(){
                     </>
                 ) : (
                     //Move infinite scroll to here
-                    <InfiniteScroll 
-                        pageStart={0} 
-                        loadMore={handleGetNext} 
-                        hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages} 
-                        initialLoad={false} >
+                    // <InfiniteScroll 
+                    //     pageStart={0} 
+                    //     loadMore={handleGetNext} 
+                    //     hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages} 
+                    //     initialLoad={false} >
+                    
+                    // </InfiniteScroll>
                     <ActivityList />
-                    </InfiniteScroll>
                 )}
                 {/* <List>
                 {activities.map(activity => (

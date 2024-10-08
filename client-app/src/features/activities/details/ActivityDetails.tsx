@@ -9,11 +9,11 @@ import ActivityDetailedInfo from './ActivityDetailedInfo';
 import ActivityDetailedChat from './ActivityDetailedChat';
 import ActivityDetailedSideBar from './ActivityDetailedSideBar';
 
-interface Props{
-    //activity : Activity;
-    cancelSelectActivity : () => void;
-    openForm : (id : string) => void;
-}
+// interface Props{
+//     //activity : Activity;
+//     cancelSelectActivity : () => void;
+//     openForm : (id : string) => void;
+// }
 //In this component, ActDetails, activity model is only passed as a single [0] one object.
 //export default function ActivityDetails({activity,cancelSelectActivity,openForm} : Props){
 export default observer(function ActivityDetails(){

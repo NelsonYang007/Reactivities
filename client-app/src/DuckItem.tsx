@@ -1,4 +1,3 @@
-import react from 'react'
 import { Duck } from './demo'
 
 interface Props{

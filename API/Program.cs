@@ -36,9 +36,13 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors("CorsPolicy");
 app.MapControllers();
 app.MapHub<ChatHub>("/chat");
+app.MapFallbackToController("Index","Fallback");
 
 //After declare the following services, type "dotnet watch" in command line to create actual SQLite database in the API project.
 using var scope = app.Services.CreateScope(); //with keyword using, it will destory or collect by garbage collector once it was used.

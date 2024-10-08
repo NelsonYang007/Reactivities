@@ -1,5 +1,5 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
-import { Photo, Profile } from "../models/profile";
+import { Photo, Profile, UserActivity } from "../models/profile";
 import agent from "../api/agent";
 import { store } from "./store";
 
@@ -10,7 +10,9 @@ export default class ProfileStore {
     loading = false;
     followings: Profile[] = [];
     loadingFollowings = false;
-    activeTab = 0;
+    activeTab: number = 0;
+    userActivities: UserActivity[] = [];
+    loadingActivities = false;
     
     constructor() {
         makeAutoObservable(this);
@@ -120,7 +122,7 @@ export default class ProfileStore {
 
     updateFollowing = async (username: string, following: boolean) => {
         this.loading = true;
-        try{
+        try {
             await agent.Profiles.updateFollowing(username);
             store.activityStore.updateAttendeeFollowing(username);
             runInAction(() => {
@@ -141,12 +143,9 @@ export default class ProfileStore {
                 })
                 this.loading = false;
             })
-
-        } catch(error){
+        } catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
+            runInAction(() => this.loading = false);
         }
     }
 
@@ -162,6 +161,22 @@ export default class ProfileStore {
             console.log(error);
             runInAction(() => {
                 this.loadingFollowings = false;
+            })
+        }
+    }
+
+    loadUserActivities = async (username: string, predicate?: string) => {
+        this.loadingActivities = true;
+        try {
+            const activities = await agent.Profiles.listActivities(username, predicate!);
+            runInAction(() => {
+                this.userActivities = activities;
+                this.loadingActivities = false;
+            })
+        } catch (error) {
+            console.log(error);
+            runInAction(() => {
+                this.loadingActivities = false;
             })
         }
     }

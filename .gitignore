@@ -475,3 +475,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+client-app/tsconfig(Bk).json
+client-app/index(Bk).html

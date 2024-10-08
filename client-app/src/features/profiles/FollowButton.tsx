@@ -8,7 +8,7 @@ interface Props{
     profile : Profile;
 }
 
-export default observer(function FollowButton({profile} : Props) {
+export default observer(function FollowButton({profile}: Props) {
     const {profileStore, userStore} = useStore();
     const {updateFollowing, loading} = profileStore;
 
@@ -17,27 +17,30 @@ export default observer(function FollowButton({profile} : Props) {
     function handleFollow(e: SyntheticEvent, username: string) {
         e.preventDefault();
         profile.following ? updateFollowing(username, false) : updateFollowing(username, true);
+        ;
     }
 
-    return(
-        <Reveal animated="move">
+
+    return (
+        <Reveal animated='move'>
             <Reveal.Content visible style={{ width: '100%' }}>
-                <Button 
-                    fluid 
-                    color='teal' 
-                    content={profile.following ? 'Following' : 'Not following'} />
+                <Button
+                    fluid
+                    color='teal'
+                    content={profile.following ? 'Following' : 'Not Following'}
+                />
             </Reveal.Content>
             <Reveal.Content hidden>
                 <Button
-                    loading={loading} 
+                    loading={loading}
                     fluid
-                    basic 
-                    color={profile.following ? 'red' : 'green'} 
-                    content={profile.following ? 'Unfollow' : 'Follow'} 
+                    basic
+                    color={profile.following ? 'red' : 'green'}
+                    content={profile.following ? 'Unfollow' : 'Follow'}
                     onClick={(e) => handleFollow(e, profile.username)}
+                    // onMouseOver={() => console.log("Profile following boolean" + profile.following)}
                 />
             </Reveal.Content>
         </Reveal>
     )
-
 })

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import { Button, Header, Segment } from 'semantic-ui-react'
-import { Activity, ActivityFormValues } from '../../../app/models/activity';
+import { ActivityFormValues } from '../../../app/models/activity';
 import { useStore } from '../../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -14,12 +14,12 @@ import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { v4 as uuid } from 'uuid';
 
-interface Props{
-    //activity : Activity | undefined;
-    //closeForm : () => void;
-    createOrEdit : (activity : Activity) => void;
-    submitting : boolean;
-}
+// interface Props{
+//     //activity : Activity | undefined;
+//     //closeForm : () => void;
+//     createOrEdit : (activity : Activity) => void;
+//     submitting : boolean;
+// }
 
 export default observer(function ActivityForm(){
     const {activityStore} = useStore();

@@ -26,7 +26,7 @@ export class Profile implements IProfile {
 
     followersCount: number = 0;
     followingCount: number = 0;
-    following: boolean = false;
+    following: boolean = true;
     
 }
 
@@ -34,4 +34,12 @@ export interface Photo{
     id: string;
     url: string;
     isMain: boolean;
+}
+
+
+export interface UserActivity {
+    id: string;
+    title: string;
+    category: string;
+    date: Date;
 }
